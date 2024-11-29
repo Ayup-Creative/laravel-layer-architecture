@@ -1,0 +1,24 @@
+{
+    "name": "ayup-creative/laravel-layer-architecture",
+    "description": "Layer architecture approach for Laravel with Repository and Service autodiscovery",
+    "type": "library",
+    "require": {
+        "ayup-creative/laravel-trait-initialization": "^1.0.0",
+        "ayup-creative/laravel-stub-maker": "^0.6.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ayup\\LaravelLayerArchitecture\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ayup\\LaravelLayerArchitecture\\LaravelLayerArchitectureAutoDiscoveryServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
