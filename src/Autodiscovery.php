@@ -8,11 +8,10 @@ use InvalidArgumentException;
 
 class Autodiscovery
 {
-
-    const string CONCRETES = 'concretes';
-    const string CONTRACTS = 'contracts';
-    const string REPOSITORIES = 'repositories';
-    const string SERVICES = 'services';
+    const CONCRETES = 'concretes';
+    const CONTRACTS = 'contracts';
+    const REPOSITORIES = 'repositories';
+    const SERVICES = 'services';
 
     protected array $servicesDirectories = [];
     protected array $repositoriesDirectories = [];
