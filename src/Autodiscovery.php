@@ -146,6 +146,10 @@ class Autodiscovery
             // Attempt to create a PHP namespace from the filename.
             $namespace = $this->filenameToNamespacedClass($filename);
 
+            if($namespace === null) {
+                continue;
+            }
+            
             // Attempt to create an alias string from the filename
             // we've discovered.
             $alias = $this->namespaceToAlias($namespace);
@@ -196,6 +200,10 @@ class Autodiscovery
      */
     protected function filenameToNamespacedClass(string $filename): ?string
     {
+        if(!is_file($filename)) {
+            return null;
+        }
+        
         if (!file_exists($filename)) {
             throw new InvalidArgumentException("The file '{$filename}' does not exist.");
         }
