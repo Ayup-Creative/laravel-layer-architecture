@@ -21,7 +21,7 @@ class MakeLayerCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'ayup:make:layer {name} {--base=} {--namespace=} {--model=}';
+    protected $signature = 'make:layer {name} {--base=} {--namespace=} {--model=}';
 
     /**
      * The console command description.
