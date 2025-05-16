@@ -32,6 +32,7 @@ class MakeLayerCommand extends Command
 
     /**
      * Execute the console command.
+     *
      * @throws Exception
      */
     public function handle()
@@ -48,11 +49,11 @@ class MakeLayerCommand extends Command
 
         $stubs = [
             $repoInterface, $repoClass,
-            $serviceInterface, $serviceClass
+            $serviceInterface, $serviceClass,
         ];
 
         /** @var Stub[] $stubs */
-        foreach($stubs as $stub) {
+        foreach ($stubs as $stub) {
             try {
                 if ($stub->writeOut()) {
                     $this->info(sprintf("Created '%s'", $stub->getFqn()));
@@ -71,7 +72,7 @@ class MakeLayerCommand extends Command
         $pieces = explode(DIRECTORY_SEPARATOR, $name);
 
         $path = Arr::map($pieces, fn ($piece) => Str::plural($piece));
-        $path[] = implode("", Arr::map($pieces, fn ($piece) => Str::singular($piece)));
+        $path[] = implode('', Arr::map($pieces, fn ($piece) => Str::singular($piece)));
 
         return implode(DIRECTORY_SEPARATOR, $path);
     }
@@ -81,13 +82,13 @@ class MakeLayerCommand extends Command
      */
     private function makeRepository(string $class, string $model, ?string $base = null, ?string $namespace = null): array
     {
-        $name = 'Repositories' . DIRECTORY_SEPARATOR . $class . 'Repository';
+        $name = 'Repositories'.DIRECTORY_SEPARATOR.$class.'Repository';
 
         $path = is_null($base)
             ? $this->getRepositoriesPath($class)
-            : $this->getPathFromBase($base . DIRECTORY_SEPARATOR . 'Repositories', $class);
+            : $this->getPathFromBase($base.DIRECTORY_SEPARATOR.'Repositories', $class);
 
-        $interface = $this->stub($name . $this->getInterfaceSuffix(), $namespace)
+        $interface = $this->stub($name.$this->getInterfaceSuffix(), $namespace)
             ->interface()
             ->extends(\Ayup\LaravelLayerArchitecture\Repositories\RepositoryInterface::class)
             ->outputPath($path);
@@ -98,7 +99,7 @@ class MakeLayerCommand extends Command
             ->outputPath($path)
             ->constructor(
                 Constructor::make([
-                    Argument::make('model')->protected()->hint($model)
+                    Argument::make('model')->protected()->hint($model),
                 ])
             );
 
@@ -112,11 +113,11 @@ class MakeLayerCommand extends Command
     {
         $path = is_null($base)
             ? $this->getServicesPath($class)
-            : $this->getPathFromBase($base . DIRECTORY_SEPARATOR . 'Services', $class);
+            : $this->getPathFromBase($base.DIRECTORY_SEPARATOR.'Services', $class);
 
-        $name = 'Services' . DIRECTORY_SEPARATOR . $class . 'Service';
+        $name = 'Services'.DIRECTORY_SEPARATOR.$class.'Service';
 
-        $interface = $this->stub($name . $this->getInterfaceSuffix(), $namespace)
+        $interface = $this->stub($name.$this->getInterfaceSuffix(), $namespace)
             ->interface()
             ->extends(\Ayup\LaravelLayerArchitecture\Services\ServiceInterface::class)
             ->outputPath($path);
@@ -127,7 +128,7 @@ class MakeLayerCommand extends Command
             ->outputPath($path)
             ->constructor(
                 Constructor::make([
-                    Argument::make('repository')->protected()->hint($repositoryInterface)
+                    Argument::make('repository')->protected()->hint($repositoryInterface),
                 ])
             );
 
@@ -136,15 +137,11 @@ class MakeLayerCommand extends Command
 
     /**
      * Get a path with a specified base path.
-     *
-     * @param string $path
-     * @param string $class
-     * @return string
      */
     private function getPathFromBase(string $path, string $class): string
     {
         return base_path($path)
-            . DIRECTORY_SEPARATOR . (str_contains($class, DIRECTORY_SEPARATOR)
+            .DIRECTORY_SEPARATOR.(str_contains($class, DIRECTORY_SEPARATOR)
                 ? Str::beforeLast($class, DIRECTORY_SEPARATOR)
                 : null
             );
@@ -152,14 +149,11 @@ class MakeLayerCommand extends Command
 
     /**
      * Return the configured service path.
-     *
-     * @param string $path
-     * @return string
      */
     private function getServicesPath(string $path): string
     {
         return config('layer-architecture-auto-discovery.services_path')
-            . DIRECTORY_SEPARATOR . (str_contains($path, DIRECTORY_SEPARATOR)
+            .DIRECTORY_SEPARATOR.(str_contains($path, DIRECTORY_SEPARATOR)
                 ? Str::beforeLast($path, DIRECTORY_SEPARATOR)
                 : null
             );
@@ -167,14 +161,11 @@ class MakeLayerCommand extends Command
 
     /**
      * Return the configured repository path.
-     *
-     * @param string $path
-     * @return string
      */
     private function getRepositoriesPath(string $path): string
     {
         return config('layer-architecture-auto-discovery.repositories_path')
-            . DIRECTORY_SEPARATOR . (str_contains($path, DIRECTORY_SEPARATOR)
+            .DIRECTORY_SEPARATOR.(str_contains($path, DIRECTORY_SEPARATOR)
                 ? Str::beforeLast($path, DIRECTORY_SEPARATOR)
                 : null
             );
@@ -182,8 +173,6 @@ class MakeLayerCommand extends Command
 
     /**
      * Return the interface suffix string.
-     *
-     * @return string
      */
     private function getInterfaceSuffix(): string
     {

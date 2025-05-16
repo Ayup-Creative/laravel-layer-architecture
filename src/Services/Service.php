@@ -9,12 +9,13 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 abstract class Service implements ServiceInterface
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
+     *
      * @throws NoRepositoryRegisteredInServiceException
      */
     public function getRepository()
     {
-        if(!property_exists($this, 'repository')) {
+        if (! property_exists($this, 'repository')) {
             throw new NoRepositoryRegisteredInServiceException(static::class);
         }
 
@@ -24,9 +25,7 @@ abstract class Service implements ServiceInterface
     /**
      * Get the fillable entity attributes from the parameter bag.
      *
-     * @param ParameterBag $parameterBag
      *
-     * @return array
      * @throws NoRepositoryRegisteredInServiceException
      */
     protected function getFillableParameters(ParameterBag $parameterBag): array
