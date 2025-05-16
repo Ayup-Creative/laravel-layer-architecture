@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f37add045cc00b6083c062f2bfca3237",
+    "content-hash": "70f2c48abf705fd47f06de384218648d",
     "packages": [
         {
             "name": "ayup-creative/laravel-stub-maker",
