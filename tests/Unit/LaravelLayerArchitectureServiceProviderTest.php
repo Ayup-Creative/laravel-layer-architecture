@@ -18,5 +18,3 @@ test('service provider merges configuration properly', function () {
         ->toHaveKey('paths.services')
         ->toHaveKey('paths.repositories');
 });
-
-test('service provider binds implementations to interfaces', function () {});
