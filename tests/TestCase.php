@@ -12,4 +12,11 @@ abstract class TestCase extends Orchestra
             \Ayup\LaravelLayerArchitecture\LaravelLayerArchitectureServiceProvider::class,
         ];
     }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->app->register(\Ayup\LaravelLayerArchitecture\LaravelLayerArchitectureServiceProvider::class);
+    }
 }
