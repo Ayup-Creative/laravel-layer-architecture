@@ -6,6 +6,9 @@
         "ayup-creative/laravel-trait-initialization": "^1.0.0",
         "ayup-creative/laravel-stub-maker": "^0.6.0"
     },
+    "require-dev": {
+        "laravel/laravel": "^10|^11|^12"
+    },
     "license": "MIT",
     "autoload": {
         "psr-4": {
