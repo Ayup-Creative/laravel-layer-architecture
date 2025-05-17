@@ -156,7 +156,7 @@ class MakeLayerCommand extends Command
             throw new Exception('Services path not configured');
         });
 
-        return base_path($dir)
+        return app_path($dir)
             .DIRECTORY_SEPARATOR.(str_contains($path, DIRECTORY_SEPARATOR)
                 ? Str::beforeLast($path, DIRECTORY_SEPARATOR)
                 : null
@@ -172,7 +172,7 @@ class MakeLayerCommand extends Command
             throw new Exception('Repositories path not configured');
         });
 
-        return base_path($dir)
+        return app_path($dir)
             .DIRECTORY_SEPARATOR.(str_contains($path, DIRECTORY_SEPARATOR)
                 ? Str::beforeLast($path, DIRECTORY_SEPARATOR)
                 : null
