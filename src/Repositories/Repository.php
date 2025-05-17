@@ -10,12 +10,13 @@ use Illuminate\Support\Collection;
 abstract class Repository implements RepositoryInterface
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
+     *
      * @throws NoModelRegisteredInRepositoryException
      */
     public function getModel(): Model
     {
-        if(!property_exists($this, 'model')) {
+        if (! property_exists($this, 'model')) {
             throw new NoModelRegisteredInRepositoryException(static::class);
         }
 
@@ -25,7 +26,6 @@ abstract class Repository implements RepositoryInterface
     /**
      * Get a new instance of the model query builder.
      *
-     * @return Builder
      * @throws NoModelRegisteredInRepositoryException
      */
     public function builder(): Builder
@@ -36,8 +36,8 @@ abstract class Repository implements RepositoryInterface
     /**
      * Create a new model instance.
      *
-     * @param array $attributes
      * @return Model
+     *
      * @throws NoModelRegisteredInRepositoryException
      */
     public function create(array $attributes)
@@ -48,14 +48,13 @@ abstract class Repository implements RepositoryInterface
     /**
      * Update an existing model.
      *
-     * @param Model|string|int $modelOrId
-     * @param array $attributes
      * @return bool
+     *
      * @throws NoModelRegisteredInRepositoryException
      */
     public function update(Model|string|int $modelOrId, array $attributes)
     {
-        $modelOrId = !$modelOrId instanceof Model
+        $modelOrId = ! $modelOrId instanceof Model
             ? $this->findOneUsingKey($modelOrId)
             : $modelOrId;
 
@@ -65,7 +64,6 @@ abstract class Repository implements RepositoryInterface
     /**
      * Delete an existing model.
      *
-     * @param Model $model
      * @return bool
      */
     public function delete(Model $model)
@@ -75,9 +73,6 @@ abstract class Repository implements RepositoryInterface
 
     /**
      * Save changes to a model.
-     *
-     * @param Model $model
-     * @return bool
      */
     public function save(Model $model): bool
     {
@@ -87,8 +82,6 @@ abstract class Repository implements RepositoryInterface
     /**
      * Find a single model using the primary key.
      *
-     * @param $key
-     * @return Model|null
      * @throws NoModelRegisteredInRepositoryException
      */
     public function findOneUsingKey($key): ?Model
@@ -99,9 +92,8 @@ abstract class Repository implements RepositoryInterface
     /**
      * Find many records using a column and value.
      *
-     * @param $value
-     * @param string|null $column
      * @return mixed
+     *
      * @throws NoModelRegisteredInRepositoryException
      */
     public function findManyUsing($value, ?string $column = null): Collection

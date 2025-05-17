@@ -4,7 +4,14 @@
     "type": "library",
     "require": {
         "ayup-creative/laravel-trait-initialization": "^1.0.0",
-        "ayup-creative/laravel-stub-maker": "^0.6.0"
+        "ayup-creative/laravel-stub-maker": "^0.6.0",
+        "illuminate/support": "*"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.22",
+        "pestphp/pest": "^3.8",
+        "orchestra/testbench": "^10.3",
+        "pestphp/pest-plugin-laravel": "^3.2"
     },
     "license": "MIT",
     "autoload": {
@@ -12,13 +19,23 @@
             "Ayup\\LaravelLayerArchitecture\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Ayup\\LaravelLayerArchitecture\\Tests\\": "tests/"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
-                "Ayup\\LaravelLayerArchitecture\\LaravelLayerArchitectureAutoDiscoveryServiceProvider"
+                "Ayup\\LaravelLayerArchitecture\\LaravelLayerArchitectureServiceProvider"
             ]
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
 }
