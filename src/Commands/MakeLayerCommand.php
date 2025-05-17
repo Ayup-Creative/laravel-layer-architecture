@@ -152,7 +152,7 @@ class MakeLayerCommand extends Command
      */
     private function getServicesPath(string $path): string
     {
-        $dir = config('layer-architecture-auto-discovery.services_path', function () {
+        $dir = config('layer-architecture-auto-discovery.paths.services', function () {
             throw new Exception('Services path not configured');
         });
 
@@ -168,7 +168,7 @@ class MakeLayerCommand extends Command
      */
     private function getRepositoriesPath(string $path): string
     {
-        $dir = config('layer-architecture-auto-discovery.repositories_path', function () {
+        $dir = config('layer-architecture-auto-discovery.paths.repositories', function () {
             throw new Exception('Repositories path not configured');
         });
 
