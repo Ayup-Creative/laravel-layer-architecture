@@ -152,7 +152,11 @@ class MakeLayerCommand extends Command
      */
     private function getServicesPath(string $path): string
     {
-        return config('layer-architecture-auto-discovery.services_path')
+        $dir = config('layer-architecture-auto-discovery.services_path', function () {
+            throw new Exception('Services path not configured');
+        });
+
+        return base_path($dir)
             .DIRECTORY_SEPARATOR.(str_contains($path, DIRECTORY_SEPARATOR)
                 ? Str::beforeLast($path, DIRECTORY_SEPARATOR)
                 : null
@@ -164,7 +168,11 @@ class MakeLayerCommand extends Command
      */
     private function getRepositoriesPath(string $path): string
     {
-        return config('layer-architecture-auto-discovery.repositories_path')
+        $dir = config('layer-architecture-auto-discovery.repositories_path', function () {
+            throw new Exception('Repositories path not configured');
+        });
+
+        return base_path($dir)
             .DIRECTORY_SEPARATOR.(str_contains($path, DIRECTORY_SEPARATOR)
                 ? Str::beforeLast($path, DIRECTORY_SEPARATOR)
                 : null
