@@ -56,15 +56,13 @@ class MakeLayerCommand extends Command
         foreach ($stubs as $stub) {
             try {
                 if ($stub->writeOut()) {
-                    $this->info(sprintf("Created '%s'", $stub->getFqn()));
+                    $this->components->info(sprintf("Created '%s'", $stub->getFqn()));
                 }
             } catch (Exception $e) {
-                $this->error(sprintf("Failed to create '%s'", $stub->getFqn()));
-                $this->error($e->getMessage());
+                $this->components->error(sprintf("Failed to create '%s'", $stub->getFqn()));
+                $this->components->error($e->getMessage());
             }
         }
-
-        exit;
     }
 
     private function divideIntoNamespace(string $name): string
