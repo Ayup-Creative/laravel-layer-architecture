@@ -18,7 +18,7 @@ class LaravelLayerArchitectureServiceProvider extends ServiceProvider
         $this->registerPublishes();
 
         $this->registerBindings(
-            folders: config('layer-architecture.paths', []),
+            folders: config('layer-architecture-auto-discovery.paths', []),
             appNamespace: $this->app->getNamespace()
         );
     }
